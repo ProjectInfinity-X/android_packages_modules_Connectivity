@@ -155,16 +155,7 @@ ASSERT_STRING_EQUAL(XT_BPF_EGRESS_PROG_PATH,    BPF_NETD_PATH "prog_netd_skfilte
 ASSERT_STRING_EQUAL(XT_BPF_ALLOWLIST_PROG_PATH, BPF_NETD_PATH "prog_netd_skfilter_allowlist_xtbpf");
 ASSERT_STRING_EQUAL(XT_BPF_DENYLIST_PROG_PATH,  BPF_NETD_PATH "prog_netd_skfilter_denylist_xtbpf");
 
-#define CGROUP_INET_CREATE_PROG_PATH BPF_NETD_PATH "prog_netd_cgroupsock_inet_create"
-#define CGROUP_INET_RELEASE_PROG_PATH BPF_NETD_PATH "prog_netd_cgroupsockrelease_inet_release"
-#define CGROUP_CONNECT4_PROG_PATH BPF_NETD_PATH "prog_netd_connect4_inet4_connect"
-#define CGROUP_CONNECT6_PROG_PATH BPF_NETD_PATH "prog_netd_connect6_inet6_connect"
-#define CGROUP_UDP4_RECVMSG_PROG_PATH BPF_NETD_PATH "prog_netd_recvmsg4_udp4_recvmsg"
-#define CGROUP_UDP6_RECVMSG_PROG_PATH BPF_NETD_PATH "prog_netd_recvmsg6_udp6_recvmsg"
-#define CGROUP_UDP4_SENDMSG_PROG_PATH BPF_NETD_PATH "prog_netd_sendmsg4_udp4_sendmsg"
-#define CGROUP_UDP6_SENDMSG_PROG_PATH BPF_NETD_PATH "prog_netd_sendmsg6_udp6_sendmsg"
-#define CGROUP_GETSOCKOPT_PROG_PATH BPF_NETD_PATH "prog_netd_getsockopt_prog"
-#define CGROUP_SETSOCKOPT_PROG_PATH BPF_NETD_PATH "prog_netd_setsockopt_prog"
+#define CGROUP_SOCKET_PROG_PATH BPF_NETD_PATH "prog_netd_cgroupsock_inet_create"
 
 #define TC_BPF_INGRESS_ACCOUNT_PROG_NAME "prog_netd_schedact_ingress_account"
 #define TC_BPF_INGRESS_ACCOUNT_PROG_PATH BPF_NETD_PATH TC_BPF_INGRESS_ACCOUNT_PROG_NAME
@@ -257,9 +248,6 @@ STRUCT_SIZE(IngressDiscardValue, 2 * 4);  // 8
 // DROP_IF_UNSET is set of rules that should DROP if globally enabled, and per-uid bit is NOT set
 #define DROP_IF_UNSET (DOZABLE_MATCH | POWERSAVE_MATCH | RESTRICTED_MATCH \
                         | LOW_POWER_STANDBY_MATCH | BACKGROUND_MATCH)
-
-#define FIREWALL_DROP_IF_SET (OEM_DENY_1_MATCH)
-#define FIREWALL_DROP_IF_UNSET (RESTRICTED_MATCH)
 
 // Warning: funky bit-wise arithmetic: in parallel, for all DROP_IF_SET/UNSET rules
 // check whether the rules are globally enabled, and if so whether the rules are
